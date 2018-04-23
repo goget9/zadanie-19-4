@@ -26,38 +26,41 @@ function comments(state = initialState, action) {
         		comments: state.comments.filter(comment => comment.id !== action.id)
         	});
         case EDIT_COMMENT:
-        	return Object.assign({}, state, {
-        		if (comment.id !== action.id) {
-        			return comments: state
-        		} 
-        		
-        		return comments: {
-        			...state,
-        			text: action.text
-        			}
+        	return Object.assign({}, state, { state.map(comment =>
+                if (comment.id !== action.id) {
+                    return comment;
+                } 
+                
+                return {
+                    ...comment,
+                    text: action.text
+                });
+
         	});
         case THUMB_UP_COMMENT:
-        	return Object.assign({}, state, {
-        		if (comment.id !== action.id) {
-        			return comments: state
-        		} 
-
-        		return comments: {
-        			...state,
-        			votes: comment.votes += 1
-        		}
-        	});
+            return Object.assign({}, state, { state.map(comment =>
+                if (comment.id !== action.id) {
+                    return comment;
+                } 
+                
+                return {
+                    ...comment,
+                    votes: comment.votes += 1
+                });
+            
+            });
         case THUMB_UP_COMMENT:
-        	return Object.assign({}, state, {
-        		if (comment.id !== action.id) {
-        			return comments: state
-        		} 
-
-        		return comments: {
-        			...state,
-        			votes: comment.votes - 1
-        		}
-        	});
+            return Object.assign({}, state, { state.map(comment =>
+                if (comment.id !== action.id) {
+                    return comment;
+                } 
+                
+                return {
+                    ...comment,
+                    votes: comment.votes - 1
+                });
+            
+            });
         default:
             return state;
     }
